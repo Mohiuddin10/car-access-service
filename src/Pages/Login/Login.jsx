@@ -1,9 +1,14 @@
+import { useContext } from 'react';
 import img from '../../assets/images/login/login.svg';
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
+
+    const { userSigninWithEmail } = useContext(AuthContext);
 
     const handleLogin = e => {
         e.preventDefault();
@@ -11,6 +16,33 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+        userSigninWithEmail(email, password)
+            .then(result => {
+                if (result) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: result.user.displayName ? `${result.user.displayName} login successfully` : "User login successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+
+            })
+            .catch(error => {
+                
+                if (error.code == "auth/invalid-credential") {
+                    console.log(error.code);
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "warning",
+                        title: "Wrong email or password",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            }
+            )
     }
     return (
         <div className="hero min-h-screen bg-base-200">

@@ -4,10 +4,11 @@ import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
 
-    const {createUser} = useContext(AuthContext);
+    const { createUser } = useContext(AuthContext);
 
     const handleSignUp = e => {
         e.preventDefault();
@@ -17,12 +18,32 @@ const SignUp = () => {
         const password = form.password.value;
         console.log(name, email, password);
         createUser(email, password)
-        .then(result => {
-            console.log(result.user);
-        })
-        .then(error => {
-            console.log(error);
-        })
+            .then(result => {
+                if (result.user) {
+                    console.log(result.user);
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${name} signup successfully`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+            .catch(error => {
+                const errorCode = error.code;
+                
+                
+                if(errorCode == "auth/email-already-in-use"){
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `Already registered`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
     }
     return (
         <div className="hero min-h-screen bg-base-200">
