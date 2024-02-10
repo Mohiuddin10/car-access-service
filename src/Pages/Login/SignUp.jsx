@@ -1,16 +1,28 @@
+import { useContext } from 'react';
 import img from '../../assets/images/login/login.svg';
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
 const SignUp = () => {
+
+    const {createUser} = useContext(AuthContext);
 
     const handleSignUp = e => {
         e.preventDefault();
         const form = e.target;
+        const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+        console.log(name, email, password);
+        createUser(email, password)
+        .then(result => {
+            console.log(result.user);
+        })
+        .then(error => {
+            console.log(error);
+        })
     }
     return (
         <div className="hero min-h-screen bg-base-200">
