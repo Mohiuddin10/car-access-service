@@ -3,9 +3,9 @@ import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const SignUp = () => {
 
-    const handleLogin = e => {
+    const handleSignUp = e => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
@@ -20,8 +20,17 @@ const Login = () => {
                     <img src={img} className='' alt="" />
                 </div>
                 <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <h1 className="text-4xl font-semibold pt-16 mx-auto">Login</h1>
-                    <form onSubmit={handleLogin} className="card-body">
+                    <h1 className="text-4xl font-semibold pt-16 mx-auto">Signup Now</h1>
+                    <form onSubmit={handleSignUp} className="card-body">
+                        {/* name  */}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input type="text" name='name' placeholder="Name" className="input input-bordered" required />
+                        </div>
+
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
@@ -38,9 +47,9 @@ const Login = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn bg-[#ff3811] text-white">Sign In</button>
+                            <button className="btn bg-[#ff3811] text-white">Sign Up</button>
                             <div className="mx-auto space-y-7 mt-7">
-                                <p className='text-lg'>Or Sign In with</p>
+                                <p className='text-lg'>Or Sign up with</p>
 
                                 <div className="flex mx-auto align-middle justify-center gap-4">
                                     <button><FaFacebookF className='text-[#3B5998]' /></button>
@@ -49,7 +58,7 @@ const Login = () => {
                                 </div>
 
                             </div>
-                            <p className='text-lg mx-auto mt-12'>Have an account? <Link to={"/signup"} className='text-[#ff3811]'>Sign Up</Link></p>
+                            <p className='text-lg mx-auto mt-12'>Already have an account?<Link to={"/login"} className='text-[#ff3811]'>Login</Link></p>
                         </div>
                     </form>
                 </div>
@@ -58,4 +67,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SignUp;
