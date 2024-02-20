@@ -1,12 +1,22 @@
+import { FcOvertime, FcPhone } from "react-icons/fc";
+import { GrMapLocation } from "react-icons/gr";
 
 const WorkTime = () => {
     return (
-        <div data-theme="dark">
-            <div className="card card-side bg-base-100 shadow-xl">
-                <figure><img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Movie" /></figure>
+        <div data-theme="dark" className="grid lg:grid-cols-3 gap-14 text-white px-16">
+            <div className="card card-side bg-base-100 shadow-xl my-20 mr-5 content-center">
+                <figure className="w-1/3 h-1/3 my-auto"><FcOvertime /></figure>
                 <div className="card-body">
-                    <h2 className="card-title">New movie is released!</h2>
-                    <p>Click the button to watch on Jetflix app.</p>
+                    <p className="text-base text-left">We are open monday-friday</p>
+                    <h2 className="card-title text-2xl font-bold">7:00 am - 9:00 pm</h2>
+                </div>
+            </div>
+
+            <div className="card card-side bg-base-100 shadow-xl my-20 mr-5 content-center">
+                <figure><FcPhone /></figure>
+                <div className="card-body">
+                    <p>Have a question?</p>
+                    <h2 className="card-title">+2546 251 2658</h2>
                     <div className="card-actions justify-end">
                         <button className="btn btn-primary">Watch</button>
                     </div>
@@ -14,21 +24,10 @@ const WorkTime = () => {
             </div>
 
             <div className="card card-side bg-base-100 shadow-xl">
-                <figure><img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Movie" /></figure>
+                <figure><GrMapLocation /></figure>
                 <div className="card-body">
-                    <h2 className="card-title">New movie is released!</h2>
-                    <p>Click the button to watch on Jetflix app.</p>
-                    <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Watch</button>
-                    </div>
-                </div>
-            </div>
-
-            <div className="card card-side bg-base-100 shadow-xl">
-                <figure><img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt="Movie" /></figure>
-                <div className="card-body">
-                    <h2 className="card-title">New movie is released!</h2>
-                    <p>Click the button to watch on Jetflix app.</p>
+                    <p>Need a repair? our address</p>
+                    <h2 className="card-title">Liza Street, New York</h2>
                     <div className="card-actions justify-end">
                         <button className="btn btn-primary">Watch</button>
                     </div>
