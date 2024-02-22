@@ -3,7 +3,7 @@ import { GrMapLocation } from "react-icons/gr";
 
 const WorkTime = () => {
     return (
-        <div data-theme="dark" className="grid lg:grid-cols-3 text-white gap-4 px-10 mt-32 rounded-xl">
+        <div data-theme="dark" className="grid lg:grid-cols-3 text-white gap-4 px-10 mt-32 rounded-xl mb-32">
             <div className="card card-side bg-base-100 shadow-xl my-20 mr-5 content-center w-full">
                 <figure className="my-auto"><FcOvertime className="w-[51px] h-[51px]"/></figure>
                 <div className="card-body my-auto">
