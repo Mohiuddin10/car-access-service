@@ -8,7 +8,8 @@ import Swal from 'sweetalert2';
 
 const SignUp = () => {
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, user } = useContext(AuthContext);
+    console.log(user);
 
     const handleSignUp = e => {
         e.preventDefault();

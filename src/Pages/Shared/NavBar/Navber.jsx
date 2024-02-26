@@ -1,12 +1,42 @@
 import { Link } from "react-router-dom";
 import logo from '../../../assets/logo.svg'
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { Toaster, toast } from "sonner";
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+    console.log(user);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                const promise = () => new Promise((resolve) => setTimeout(() => resolve({ name: 'User' }), 2000));
+
+                toast.promise(promise, {
+                    loading: 'Loading...',
+                    success: (data) => {
+                        return `${data.name} Logedout`;
+                    },
+                    error: 'Error',
+                });
+            }
+
+            )
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     const navItems = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
-        <li><Link to="/login">Login</Link></li>
+        <Toaster className="w-full" position="top-right" />
+        {user?.email ? <>
+            <li><Link to="/bookings">Bookings</Link></li>
+            <button onClick={handleLogOut} className=""><li>Logout</li></button>
+        </> : <li><Link to="/login">Login</Link></li>
+        }
     </>
 
     return (
@@ -32,7 +62,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-            <button className="btn btn-outline btn-warning">Appionment</button>
+                <button className="btn btn-outline btn-warning">Appionment</button>
             </div>
         </div>
     );
