@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
-import { Toaster, toast } from 'sonner'
+import { Toaster, toast } from 'sonner';
 
 const Checkout = () => {
     const product = useLoaderData();
     console.log(product);
+    const { img } = product;
     const { user } = useContext(AuthContext);
 
     const handleCheckout = e => {
@@ -24,6 +25,7 @@ const Checkout = () => {
             customer: firstName + " " + lastName,
             email,
             phone,
+            img,
             date,
             serviceName
         }
@@ -41,8 +43,8 @@ const Checkout = () => {
             .then(data => {
                 console.log(data.acknowledged);
                 if (data.acknowledged) {
-                        toast.success("Service checkout booked successfully")
-                    
+                    toast.success("Service checkout booked successfully")
+
                 }
             })
     }
@@ -67,7 +69,7 @@ const Checkout = () => {
                 <textarea placeholder="Your Message" name="message" className="textarea textarea-bordered textarea-lg w-full max-w-full" ></textarea>
             </div>
             <div className="form-control mt-6">
-                <Toaster position="top-center"/>
+                <Toaster />
                 <button className="btn bg-[#ff3811] text-white">Order Confirm</button>
             </div>
         </form>
