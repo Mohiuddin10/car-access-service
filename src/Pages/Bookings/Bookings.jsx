@@ -1,9 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Bookings = () => {
     const {user} = useContext(AuthContext);
     console.log(user.email);
+    const [bookings, setBookings] = useState([]);
 
     const url = `http://localhost:5000/bookings?email=${user?.email}`;
     console.log(url);
@@ -11,11 +12,12 @@ const Bookings = () => {
         fetch(url)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            setBookings(data);
         })
     },[])
     return (
         <div>
+            <h2>Your bookings: {bookings.length}</h2>
             
         </div>
     );
