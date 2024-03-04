@@ -2,13 +2,14 @@ import { useContext } from 'react';
 import img from '../../assets/images/login/login.svg';
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 
 const Login = () => {
 
     const { userSigninWithEmail } = useContext(AuthContext);
+    const location = useLocation()
 
     const handleLogin = e => {
         e.preventDefault();
