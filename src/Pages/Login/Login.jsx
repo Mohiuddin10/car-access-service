@@ -2,14 +2,16 @@ import { useContext } from 'react';
 import img from '../../assets/images/login/login.svg';
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 
 const Login = () => {
 
     const { userSigninWithEmail } = useContext(AuthContext);
-    const location = useLocation()
+    const location = useLocation();
+    const navigate = useNavigate();
+    console.log(location);
 
     const handleLogin = e => {
         e.preventDefault();
@@ -27,9 +29,11 @@ const Login = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    // get access token 
+                    
+                    navigate(location?.state ? location?.state : "/")
                 }
-
-            })
+          })
             .catch(error => {
                 
                 if (error.code == "auth/invalid-credential") {
