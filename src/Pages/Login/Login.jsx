@@ -5,6 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const Login = () => {
 
@@ -30,12 +31,18 @@ const Login = () => {
                         timer: 1500
                     });
                     // get access token 
-                    
+                    const loggedInUser = result.user;
+                    console.log(loggedInUser);
+                    const user = { email };
+                    axios.post("http://localhost:5000/jwt", user)
+                    .then(res => {
+                        console.log(res.data);
+                    })
                     navigate(location?.state ? location?.state : "/")
                 }
-          })
+            })
             .catch(error => {
-                
+
                 if (error.code == "auth/invalid-credential") {
                     console.log(error.code);
                     Swal.fire({
